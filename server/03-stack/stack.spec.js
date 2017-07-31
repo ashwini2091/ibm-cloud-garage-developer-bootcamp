@@ -1,7 +1,13 @@
-let stack = {
-  isEmpty: () => true,
-  size: 0
+const makeStack = () => {
+  let size = 0;
+  return {
+    isEmpty: () => size === 0,
+    push: () => size++,
+    size
+  };
 };
+
+let stack = makeStack();
 
 describe.only('the stack spec', () => {
   it('starts empty', () => {
@@ -12,8 +18,13 @@ describe.only('the stack spec', () => {
     stack.size.should.equal(0);
   });
 
-  it('is not to be empty when pushed');
+  it('is not to be empty when pushed', () => {
+    stack.push();
+    stack.isEmpty().should.be.false();
+  });
+
   it('leaves stack size 1 when pushed');
+
   it('leaves stack size empty when pushed and popped');
   it('leaves stack size 0 when pushed and popped');
   it('overflows');
